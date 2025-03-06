@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Career AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="dashboard.html" class="logo">Career AI</a>
+            <ul class="nav-links">
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#recommendations">Recommendations</a></li>
+                <li><a href="#my-courses">My Courses</a></li>
+                <li><a href="#applications">Applications</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><button id="logoutBtn" class="btn btn-secondary">Logout</button></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="welcome-message">
+                <h1>Welcome back, <span id="userName">User</span>!</h1>
+                <p>Here's an overview of your career progress</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Resume Score</h3>
+                    <p class="stat-number">85%</p>
+                    <a href="#resume" class="btn btn-secondary">Improve Score</a>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Courses Completed</h3>
+                    <p class="stat-number">3</p>
+                    <a href="#my-courses" class="btn btn-secondary">View All</a>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Applications</h3>
+                    <p class="stat-number">5</p>
+                    <a href="#applications" class="btn btn-secondary">Track Status</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="dashboard-section">
+        <div class="container">
+            <h2>Resume Analysis</h2>
+            <div class="resume-container">
+                <div class="resume-upload">
+                    <h3>Upload Resume</h3>
+                    <input type="file" id="resumeUpload" accept=".pdf,.docx" />
+                    <label for="resumeUpload" class="btn btn-primary">Upload New Resume</label>
+                </div>
+                <div id="resumeResults" class="resume-results">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="dashboard-section">
+        <div class="container">
+            <h2>Personalized Recommendations</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-courses">
+                    <h3>Recommended Courses</h3>
+                    <div id="recommendedCourses" class="courses-grid">
+                        <!-- Courses will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="recommendation-internships">
+                    <h3>Recommended Internships</h3>
+                    <div id="recommendedInternships" class="internships-grid">
+                        <!-- Internships will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Courses Section -->
+    <section id="my-courses" class="dashboard-section">
+        <div class="container">
+            <h2>My Courses</h2>
+            <div id="myCourses" class="courses-grid">
+                <!-- Enrolled courses will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="dashboard-section">
+        <div class="container">
+            <h2>My Applications</h2>
+            <div id="applicationsList" class="applications-grid">
+                <!-- Applications will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="dashboard-section">
+        <div class="container">
+            <h2>My Profile</h2>
+            <div class="profile-container">
+                <form id="profileForm" class="profile-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Skills</label>
+                        <textarea name="skills" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 

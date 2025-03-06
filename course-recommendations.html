@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommendations - Career AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Career<span style="color: var(--accent-color)">AI</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume-analysis.html">Resume Analysis</a></li>
+                <li><a href="course-recommendations.html" class="active">Courses</a></li>
+                <li><a href="internship-alerts.html">Internships</a></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Personalized Course Recommendations</h1>
+                <p>Discover courses tailored to your skills, interests, and career goals</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Your Skills Profile</h2>
+                <p>Based on your resume analysis and preferences</p>
+            </div>
+            <div class="skills-container">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Technical Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript <i class="fas fa-star"></i></span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-chart-line"></i> Career Interests</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">Data Science</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary"><i class="fas fa-edit"></i> Update Skills Profile</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="learning-paths-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recommended Learning Paths</h2>
+                <p>Structured course sequences to achieve your career goals</p>
+            </div>
+            <div class="paths-grid">
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="path-info">
+                            <h3>Full Stack Development</h3>
+                            <div class="path-meta">
+                                <span><i class="fas fa-clock"></i> 6 months</span>
+                                <span><i class="fas fa-signal"></i> Intermediate</span>
+                            </div>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-circle" data-progress="65">
+                                <span>65%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-content">
+                        <ul class="path-milestones">
+                            <li class="completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Frontend Fundamentals</span>
+                            </li>
+                            <li class="completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>JavaScript Advanced</span>
+                            </li>
+                            <li class="current">
+                                <i class="fas fa-circle"></i>
+                                <span>React.js Development</span>
+                            </li>
+                            <li>
+                                <i class="far fa-circle"></i>
+                                <span>Backend with Node.js</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Continue Learning <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="path-info">
+                            <h3>Data Science & AI</h3>
+                            <div class="path-meta">
+                                <span><i class="fas fa-clock"></i> 8 months</span>
+                                <span><i class="fas fa-signal"></i> Advanced</span>
+                            </div>
+                        </div>
+                        <div class="path-progress">
+                            <div class="progress-circle" data-progress="30">
+                                <span>30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-content">
+                        <ul class="path-milestones">
+                            <li class="completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Python for Data Science</span>
+                            </li>
+                            <li class="current">
+                                <i class="fas fa-circle"></i>
+                                <span>Machine Learning Basics</span>
+                            </li>
+                            <li>
+                                <i class="far fa-circle"></i>
+                                <span>Deep Learning</span>
+                            </li>
+                            <li>
+                                <i class="far fa-circle"></i>
+                                <span>AI Applications</span>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Continue Learning <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Courses -->
+    <section class="featured-courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recommended Courses</h2>
+                <p>Courses matching your profile and career goals</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card premium">
+                    <div class="course-image">
+                        <img src="images/course-1.png" alt="Advanced React Development">
+                        <span class="course-badge">Bestseller</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-tags">
+                            <span>React.js</span>
+                            <span>Advanced</span>
+                        </div>
+                        <h3>Advanced React Development</h3>
+                        <p>Master modern React patterns, hooks, and advanced state management</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 24 hours</span>
+                            <span><i class="fas fa-video"></i> 180 lectures</span>
+                            <span><i class="fas fa-star"></i> 4.8 (2.3k reviews)</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="price-tag">
+                                <span class="current-price">$89.99</span>
+                                <span class="original-price">$199.99</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/course-2.png" alt="Data Science Fundamentals">
+                        <span class="course-badge">New</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-tags">
+                            <span>Python</span>
+                            <span>Data Science</span>
+                        </div>
+                        <h3>Data Science Fundamentals</h3>
+                        <p>Learn data analysis, visualization, and machine learning basics</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 32 hours</span>
+                            <span><i class="fas fa-video"></i> 220 lectures</span>
+                            <span><i class="fas fa-star"></i> 4.9 (1.8k reviews)</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="price-tag">
+                                <span class="current-price">$79.99</span>
+                                <span class="original-price">$169.99</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="images/course-3.png" alt="UI/UX Design Mastery">
+                        <span class="course-badge">Popular</span>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-tags">
+                            <span>UI/UX</span>
+                            <span>Design</span>
+                        </div>
+                        <h3>UI/UX Design Mastery</h3>
+                        <p>Create stunning user interfaces and seamless experiences</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 28 hours</span>
+                            <span><i class="fas fa-video"></i> 160 lectures</span>
+                            <span><i class="fas fa-star"></i> 4.7 (1.5k reviews)</span>
+                        </div>
+                        <div class="course-footer">
+                            <div class="price-tag">
+                                <span class="current-price">$69.99</span>
+                                <span class="original-price">$149.99</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a href="#" class="btn btn-secondary">View All Courses <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/course-recommendations.js"></script>
+</body>
+</html> 
