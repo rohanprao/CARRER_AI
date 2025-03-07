@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - Career AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .profile-section {
+            padding: 4rem 0;
+            min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, var(--primary-color-light) 0%, var(--secondary-color-light) 100%);
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-header h1 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+
+        .profile-form {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .form-section {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .form-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .skill-checkbox:hover {
+            background: #f1f5f9;
+        }
+
+        .skill-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .interest-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .interest-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .interest-card.selected {
+            background: var(--primary-color-light);
+            border-color: var(--primary-color);
+        }
+
+        .interest-card i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .btn-skip {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-skip:hover {
+            background: var(--primary-color-light);
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                padding: 2rem 1rem;
+            }
+
+            .profile-container {
+                padding: 1.5rem;
+            }
+
+            .skills-grid,
+            .interests-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-skip,
+            .btn-submit {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Career<span style="color: var(--accent-color)">AI</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume-analysis.html">Resume Analysis</a></li>
+                <li><a href="course-recommendations.html">Courses</a></li>
+                <li><a href="internship-alerts.html">Internships</a></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1>Complete Your Profile</h1>
+                <p>Help us personalize your learning journey</p>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h2><i class="fas fa-user"></i> Basic Information</h2>
+                    <div class="form-group">
+                        <label for="education">Highest Education Level</label>
+                        <select id="education" name="education" required>
+                            <option value="">Select Education Level</option>
+                            <option value="high_school">High School</option>
+                            <option value="bachelors">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="phd">Ph.D.</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input type="number" id="experience" name="experience" min="0" max="50" required>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="form-section">
+                    <h2><i class="fas fa-code"></i> Technical Skills</h2>
+                    <p>Select your current technical skills:</p>
+                    <div class="skills-grid">
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="javascript"> JavaScript
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="python"> Python
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="java"> Java
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="react"> React
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="node"> Node.js
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="sql"> SQL
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="aws"> AWS
+                        </label>
+                        <label class="skill-checkbox">
+                            <input type="checkbox" name="skills" value="docker"> Docker
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Career Interests -->
+                <div class="form-section">
+                    <h2><i class="fas fa-chart-line"></i> Career Interests</h2>
+                    <p>Select areas you're interested in learning:</p>
+                    <div class="interests-grid">
+                        <div class="interest-card" data-interest="web_development">
+                            <i class="fas fa-globe"></i>
+                            <p>Web Development</p>
+                        </div>
+                        <div class="interest-card" data-interest="data_science">
+                            <i class="fas fa-database"></i>
+                            <p>Data Science</p>
+                        </div>
+                        <div class="interest-card" data-interest="machine_learning">
+                            <i class="fas fa-brain"></i>
+                            <p>Machine Learning</p>
+                        </div>
+                        <div class="interest-card" data-interest="cloud_computing">
+                            <i class="fas fa-cloud"></i>
+                            <p>Cloud Computing</p>
+                        </div>
+                        <div class="interest-card" data-interest="cybersecurity">
+                            <i class="fas fa-shield-alt"></i>
+                            <p>Cybersecurity</p>
+                        </div>
+                        <div class="interest-card" data-interest="mobile_dev">
+                            <i class="fas fa-mobile-alt"></i>
+                            <p>Mobile Development</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Preferences -->
+                <div class="form-section">
+                    <h2><i class="fas fa-graduation-cap"></i> Learning Preferences</h2>
+                    <div class="form-group">
+                        <label for="learning_style">Preferred Learning Style</label>
+                        <select id="learning_style" name="learning_style" required>
+                            <option value="">Select Learning Style</option>
+                            <option value="video">Video Lectures</option>
+                            <option value="interactive">Interactive Exercises</option>
+                            <option value="reading">Reading Materials</option>
+                            <option value="project">Project-based Learning</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="time_commitment">Weekly Time Commitment (hours)</label>
+                        <select id="time_commitment" name="time_commitment" required>
+                            <option value="">Select Time Commitment</option>
+                            <option value="0-5">0-5 hours</option>
+                            <option value="5-10">5-10 hours</option>
+                            <option value="10-20">10-20 hours</option>
+                            <option value="20+">20+ hours</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button type="button" class="btn-skip">Skip for Now</button>
+                    <button type="submit" class="btn-submit">Get Personalized Recommendations</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle interest card selection
+            const interestCards = document.querySelectorAll('.interest-card');
+            interestCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+
+            // Handle form submission
+            const profileForm = document.getElementById('profileForm');
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = new FormData(this);
+                const selectedInterests = Array.from(document.querySelectorAll('.interest-card.selected'))
+                    .map(card => card.dataset.interest);
+                
+                // Add selected interests to form data
+                formData.append('interests', JSON.stringify(selectedInterests));
+                
+                // Create user profile object
+                const userProfile = {
+                    education: formData.get('education'),
+                    experience: formData.get('experience'),
+                    skills: Array.from(formData.getAll('skills')),
+                    interests: selectedInterests,
+                    learning_style: formData.get('learning_style'),
+                    time_commitment: formData.get('time_commitment')
+                };
+
+                // Store user profile in localStorage
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                // Redirect to course recommendations page
+                window.location.href = 'course-recommendations.html';
+            });
+
+            // Handle skip button
+            const skipButton = document.querySelector('.btn-skip');
+            skipButton.addEventListener('click', function() {
+                window.location.href = 'course-recommendations.html';
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career AI - Your Career Development Partner</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Career<span style="color: var(--accent-color)">AI</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="resume-analysis.html">Resume Analysis</a></li>
+                <li><a href="course-recommendations.html">Courses</a></li>
+                <li><a href="internship-alerts.html">Internships</a></li>
+                <li class="user-profile">
+                    <div class="profile-icon" onclick="toggleProfileMenu()">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-header">
+                            <div class="dropdown-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <p class="user-name">Hi, User!</p>
+                                <p class="user-email">user@example.com</p>
+                            </div>
+                        </div>
+                        <a href="#" class="manage-account">Manage your Account</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="add-account">Add account</a>
+                        <a href="#" class="sign-out">Sign out</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-footer">
+                            <a href="#">Privacy Policy</a>
+                            <span>•</span>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Unlock Your Career Potential with AI</h1>
+                <p>Get personalized career guidance, course recommendations, and internship opportunities tailored to your skills and aspirations.</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" onclick="window.location.href='resume-analysis.html'">
+                    <div class="feature-image-container">
+                        <img src="images/resume-analysis.png" alt="Resume Analysis" class="feature-image">
+                    </div>
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Resume Analysis</h3>
+                    <p>Get detailed insights and suggestions to improve your resume using AI-powered analysis.</p>
+                    <a href="resume-analysis.html" class="btn btn-primary">Analyze Resume</a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='course-recommendations.html'">
+                    <div class="feature-image-container">
+                        <img src="images/course-recommendations.png" alt="Course Recommendations" class="feature-image">
+                    </div>
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Course Recommendations</h3>
+                    <p>Discover relevant courses from top platforms based on your skills and career goals.</p>
+                    <a href="course-recommendations.html" class="btn btn-primary">Find Courses</a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='internship-alerts.html'">
+                    <div class="feature-image-container">
+                        <img src="images/internship-matching.png" alt="Internship Matching" class="feature-image">
+                    </div>
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Internship Matching</h3>
+                    <p>Find internship opportunities that match your skills and interests.</p>
+                    <a href="internship-alerts.html" class="btn btn-primary">View Internships</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recommended Courses</h2>
+                <p class="section-description">Discover courses tailored to your career path</p>
+            </div>
+            <div class="courses-grid">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>Data Science & Analytics</h3>
+                        <a href="course-recommendations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>AWS Cloud Architecture</h3>
+                        <a href="course-recommendations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-content">
+                        <h3>UI/UX Design Mastery</h3>
+                        <a href="course-recommendations.html" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a href="course-recommendations.html" class="btn btn-secondary">View All Courses <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section id="internships" class="internships">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Internships</h2>
+                <p class="section-description">Latest opportunities from top companies</p>
+            </div>
+            <div id="featuredInternshipsGrid" class="internships-grid">
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Loading internships...</p>
+                </div>
+            </div>
+            <div class="section-footer">
+                <a href="internship-alerts.html" class="btn btn-secondary">View All Internships <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>contact@careerai.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Career Street, Tech City, TC 12345</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Career AI</h3>
+                    <p>Your AI-powered career development partner, helping you make informed decisions about your professional journey.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="resume-analysis.html">Resume Analysis</a></li>
+                        <li><a href="course-recommendations.html">Courses</a></li>
+                        <li><a href="internship-alerts.html">Internships</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Career AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/internship-api.js"></script>
+    <script>
+        function toggleProfileMenu() {
+            const dropdown = document.getElementById('profileDropdown');
+            dropdown.classList.toggle('show');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = dropdown.contains(event.target) || 
+                                    event.target.closest('.profile-icon');
+                if (!isClickInside && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+
+        // Function to generate internship card HTML
+        function generateInternshipCard(internship) {
+            const badge = internship.source === 'JSearch' ? 'new-badge' : 'featured-badge';
+            const badgeText = internship.source === 'JSearch' ? 'New' : 'Featured';
+            
+            return `
+                <div class="internship-card">
+                    <div class="company-header">
+                        <img src="${internship.logo}" alt="${internship.company} Logo" class="company-logo" 
+                             onerror="this.onerror=null; this.src='images/default-company.png';">
+                        <span class="${badge}">${badgeText}</span>
+                    </div>
+                    <h3>${internship.title}</h3>
+                    <p class="company-name">${internship.company}</p>
+                    <div class="internship-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> ${internship.location}</span>
+                        <span><i class="fas fa-clock"></i> ${internship.duration}</span>
+                        <span><i class="fas fa-dollar-sign"></i> ${internship.stipend}</span>
+                    </div>
+                    <div class="skills-tags">
+                        ${internship.requirements.slice(0, 3).map(skill => `<span>${skill}</span>`).join('')}
+                    </div>
+                    <div class="internship-footer">
+                        <span class="deadline">Posted: ${new Date(internship.postedDate).toLocaleDateString()}</span>
+                        <a href="${internship.applyLink}" class="btn btn-primary" target="_blank">Apply Now</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to load featured internships
+        async function loadFeaturedInternships() {
+            try {
+                const internships = await window.InternshipAPI.fetchAllInternships();
+                const featuredInternshipsGrid = document.getElementById('featuredInternshipsGrid');
+                const loadingState = document.getElementById('loadingState');
+                
+                if (internships && internships.length > 0) {
+                    // Display the first 3 internships
+                    const featuredHtml = internships
+                        .slice(0, 3)
+                        .map(internship => generateInternshipCard(internship))
+                        .join('');
+                    
+                    loadingState.style.display = 'none';
+                    featuredInternshipsGrid.innerHTML = featuredHtml;
+                } else {
+                    loadingState.innerHTML = '<p>No internships found. Please check back later.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading internships:', error);
+                const loadingState = document.getElementById('loadingState');
+                loadingState.innerHTML = '<p>Error loading internships. Please try again later.</p>';
+            }
+        }
+
+        // Load internships when the page loads
+        document.addEventListener('DOMContentLoaded', loadFeaturedInternships);
+    </script>
+    <style>
+        .user-profile {
+            position: relative;
+        }
+
+        .profile-icon {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: #f0f0f0;
+        }
+
+        .profile-icon i {
+            font-size: 2rem;
+            color: #666;
+        }
+
+        .profile-icon:hover {
+            background: #e0e0e0;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+
+        .dropdown-avatar i {
+            font-size: 3rem;
+            color: #666;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+        }
+
+        .user-email {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0.2rem 0 0 0;
+        }
+
+        .manage-account {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            border-radius: 20px;
+            background: #f5f5f5;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .manage-account:hover {
+            background: #eee;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 0.5rem 0;
+        }
+
+        .add-account,
+        .sign-out {
+            display: block;
+            padding: 0.8rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .add-account:hover,
+        .sign-out:hover {
+            background: #f5f5f5;
+        }
+
+        .dropdown-footer {
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .dropdown-footer a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .dropdown-footer span {
+            margin: 0 0.5rem;
+            color: #666;
+        }
+
+        /* Updated Course Cards */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            padding: 0 1rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            text-align: center;
+            padding: 1.5rem;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            align-items: center;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .course-content h3 {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* Tablet View */
+        @media screen and (max-width: 1024px) {
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+                padding: 0 0.75rem;
+            }
+
+            .course-card {
+                padding: 1.25rem;
+                min-height: 150px;
+            }
+        }
+
+        /* Mobile View */
+        @media screen and (max-width: 768px) {
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 0.5rem;
+                margin: 1rem 0;
+            }
+
+            .course-card {
+                max-width: 100%;
+                padding: 1.25rem;
+                min-height: auto;
+            }
+
+            .course-content {
+                gap: 1rem;
+            }
+
+            .course-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .btn-primary {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                max-width: none;
+            }
+
+            .section-header {
+                padding: 0 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .section-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Small Mobile View */
+        @media screen and (max-width: 480px) {
+            .courses-grid {
+                padding: 0 0.25rem;
+            }
+
+            .course-card {
+                padding: 1rem;
+            }
+
+            .course-content h3 {
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 0.6rem 0.9rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Updated Internship Cards */
+        .internships-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .internship-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .internship-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .new-badge, .featured-badge, .hot-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .new-badge { background: linear-gradient(45deg, #4CAF50, #8BC34A); }
+        .featured-badge { background: linear-gradient(45deg, #2196F3, #03A9F4); }
+        .hot-badge { background: linear-gradient(45deg, #FF5722, #F44336); }
+
+        .internship-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .deadline {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 1024px) {
+            .courses-grid,
+            .internships-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .courses-grid,
+            .internships-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .course-card,
+            .internship-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .course-image {
+                height: 180px;
+            }
+
+            .course-content,
+            .internship-card {
+                padding: 1.25rem;
+            }
+
+            .skills-tags {
+                flex-wrap: wrap;
+            }
+
+            .btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .internship-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .internship-footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .course-image {
+                height: 160px;
+            }
+
+            .course-meta span,
+            .internship-meta span {
+                font-size: 0.85rem;
+            }
+
+            .company-logo {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Updated styles for the section header image */
+        .section-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .section-image {
+                height: 200px;
+            }
+        }
+
+        /* Update hero buttons styling */
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .hero-buttons .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-buttons .btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</body>
+</html> 

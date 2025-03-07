@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Alerts - Career AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Career<span style="color: var(--accent-color)">AI</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume-analysis.html">Resume Analysis</a></li>
+                <li><a href="course-recommendations.html">Courses</a></li>
+                <li><a href="internship-alerts.html" class="active">Internships</a></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Real-Time Internship Opportunities</h1>
+                <p>Discover internships matching your skills and career interests</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Internships -->
+    <section class="featured-internships-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recommended Internships</h2>
+                <p>Opportunities matching your profile and preferences</p>
+                    </div>
+            <div class="internships-grid" id="featuredInternshipsGrid">
+                <!-- Internship cards will be dynamically inserted here -->
+                    </div>
+                </div>
+    </section>
+
+    <!-- All Internships Section -->
+    <section class="all-internships-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Browse All Internships</h2>
+                <p>Explore available opportunities in India</p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading internships...</p>
+                </div>
+
+            <!-- Internships Grid -->
+            <div class="internships-grid" id="allInternshipsGrid">
+                <!-- Internship cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #4f46e5;
+            --accent-color: #f59e0b;
+            --text-color: #1f2937;
+            --dark-gray: #4b5563;
+            --light-gray: #9ca3af;
+            --border-radius: 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/office-hallway.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .featured-internships-section,
+        .all-internships-section {
+            padding: 4rem 0;
+            position: relative;
+            min-height: 600px; /* Minimum height to prevent layout shifts */
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 15;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--dark-gray);
+        }
+
+        /* Internship Cards */
+        .internships-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 0 auto;
+            min-height: 400px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .internship-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            transform: translateY(0);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%; /* Ensure consistent height */
+        }
+
+        .internship-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            min-width: 60px; /* Prevent shrinking */
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 1rem;
+            background: #f3f4f6; /* Background for missing images */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .company-logo-fallback {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            border-radius: 8px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .company-logo-fallback i {
+            font-size: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .internship-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            min-height: 90px; /* Ensure consistent height */
+        }
+
+        .internship-header-content {
+            flex: 1;
+            min-width: 0; /* Allow text to wrap */
+        }
+
+        .internship-header-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .company-name {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .internship-content {
+            padding: 1.5rem;
+        }
+
+        .internship-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .internship-tag {
+            background: #f3f4f6;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .internship-details {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        .internship-details p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .internship-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .posted-date {
+            font-size: 0.85rem;
+            color: var(--dark-gray);
+        }
+
+        .btn-apply {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-apply:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Loading State */
+        .loading-state {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loading-state.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .internships-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Additional Styles */
+        .source-tag {
+            background: var(--primary-color) !important;
+            color: white !important;
+        }
+
+        .no-results, .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 4rem);
+            max-width: 600px;
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 5;
+        }
+
+        .no-results i, .error-message i {
+            font-size: 3rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .error-message i {
+            color: #dc2626;
+        }
+
+        .no-results h3, .error-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .no-results p, .error-message p {
+            color: var(--dark-gray);
+        }
+
+        .description {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--dark-gray);
+        }
+
+        /* Remove filter-related styles */
+        .internship-filters, .filter-group, .filter-select {
+            display: none;
+        }
+
+        /* Featured Card Styles */
+        .featured-card {
+            border: 2px solid var(--primary-color);
+            position: relative;
+            background: linear-gradient(to bottom, #ffffff, #f8fafc);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .featured-badge i {
+            color: #ffd700;
+        }
+
+        /* Update grid styles for featured section */
+        #featuredInternshipsGrid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            #featuredInternshipsGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Add API script -->
+    <script src="js/internship-api.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const featuredInternshipsGrid = document.getElementById('featuredInternshipsGrid');
+            const internshipsGrid = document.getElementById('allInternshipsGrid');
+            const loadingState = document.getElementById('loadingState');
+
+            let cachedInternships = [];
+
+            function showLoading() {
+                loadingState.classList.add('visible');
+                internshipsGrid.style.opacity = '0.5';
+                featuredInternshipsGrid.style.opacity = '0.5';
+            }
+
+            function hideLoading() {
+                loadingState.classList.remove('visible');
+                internshipsGrid.style.opacity = '1';
+                featuredInternshipsGrid.style.opacity = '1';
+            }
+
+            // Function to determine if an internship is featured
+            function isFeaturedInternship(internship) {
+                const topCompanies = [
+                    'Google', 'Microsoft', 'Amazon', 'Apple', 'Meta', 'IBM', 
+                    'Intel', 'Adobe', 'Oracle', 'SAP', 'Cisco', 'TCS', 
+                    'Infosys', 'Wipro', 'HCL', 'Tech Mahindra'
+                ];
+                
+                const hasGoodStipend = internship.stipend && 
+                    !internship.stipend.includes('not specified') && 
+                    !internship.stipend.includes('Check');
+
+                const isRecentlyPosted = new Date(internship.postedDate) > 
+                    new Date(Date.now() - 7 * 24 * 60 * 60 * 1000); // Within last 7 days
+
+                const isFromTopCompany = topCompanies.some(company => 
+                    internship.company.toLowerCase().includes(company.toLowerCase()));
+
+                const hasRequirements = internship.requirements && 
+                    internship.requirements.length > 0;
+
+                return (isFromTopCompany || hasGoodStipend) && 
+                    (isRecentlyPosted && hasRequirements);
+            }
+
+            async function loadInternships() {
+                try {
+                    showLoading();
+                    internshipsGrid.style.display = 'grid';
+                    featuredInternshipsGrid.style.display = 'grid';
+                    
+                    const internships = await window.InternshipAPI.fetchAllInternships();
+                    if (internships && internships.length > 0) {
+                        cachedInternships = internships;
+                        
+                        // Display exactly 3 internships in the Recommended section
+                        displayInternships(internships.slice(0, 3), featuredInternshipsGrid, true);
+                        
+                        // Display all internships in the Browse All section
+                        displayInternships(internships, internshipsGrid, false);
+                    } else {
+                        throw new Error('No internships found');
+                    }
+                } catch (error) {
+                    console.error('Error loading internships:', error);
+                    const errorMessage = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <h3>Error loading internships</h3>
+                            <p>${error.message || 'Please try again later or check your internet connection.'}</p>
+                        </div>
+                    `;
+                    internshipsGrid.innerHTML = errorMessage;
+                    featuredInternshipsGrid.innerHTML = errorMessage;
+                } finally {
+                    hideLoading();
+                }
+            }
+
+            function displayInternships(internships, targetGrid, isFeatured) {
+                if (internships.length === 0) {
+                    targetGrid.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-info-circle"></i>
+                            <h3>No internships available</h3>
+                            <p>Check back later for new opportunities.</p>
+                        </div>
+                    `;
+                } else {
+                    targetGrid.innerHTML = internships.map(internship => 
+                        generateInternshipCard(internship, isFeatured)
+                    ).join('');
+                }
+            }
+
+            function generateInternshipCard(internship, isFeatured) {
+                const daysAgo = Math.floor((new Date() - new Date(internship.postedDate)) / (1000 * 60 * 60 * 24));
+                
+                const logoHtml = internship.logo && internship.logo !== 'images/default-company.png' ?
+                    `<img src="${internship.logo}" alt="${internship.company}" class="company-logo" 
+                        onerror="this.parentElement.innerHTML='<div class=\'company-logo-fallback\'><i class=\'fas fa-building\'></i></div>'">`
+                    : `<div class="company-logo-fallback"><i class="fas fa-building"></i></div>`;
+                
+                return `
+                    <div class="internship-card ${isFeatured ? 'featured-card' : ''}">
+                        ${isFeatured ? '<div class="featured-badge"><i class="fas fa-star"></i> Featured</div>' : ''}
+                        <div class="internship-header">
+                            ${logoHtml}
+                            <div class="internship-header-content">
+                                <h3>${internship.title}</h3>
+                                <div class="company-name">${internship.company}</div>
+                            </div>
+                        </div>
+                        <div class="internship-content">
+                            <div class="internship-tags">
+                                <span class="internship-tag source-tag"><i class="fas fa-building"></i> ${internship.source}</span>
+                                <span class="internship-tag"><i class="fas fa-map-marker-alt"></i> ${internship.location}</span>
+                                <span class="internship-tag"><i class="fas fa-clock"></i> ${internship.duration}</span>
+                                <span class="internship-tag"><i class="fas fa-money-bill-wave"></i> ${internship.stipend}</span>
+                            </div>
+                            <div class="internship-details">
+                                <p><i class="fas fa-briefcase"></i> ${internship.field}</p>
+                                ${internship.requirements.length > 0 ? 
+                                    `<p><i class="fas fa-list"></i> Required Skills: ${internship.requirements.join(", ")}</p>` : 
+                                    ''
+                                }
+                                ${internship.description ? 
+                                    `<p class="description"><i class="fas fa-info-circle"></i> ${internship.description.slice(0, 150)}...</p>` : 
+                                    ''
+                                }
+                            </div>
+                        </div>
+                        <div class="internship-footer">
+                            <div class="posted-date">Posted ${daysAgo} days ago</div>
+                            <a href="${internship.applyLink}" target="_blank" class="btn-apply">
+                                Apply Now <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Initial load
+            loadInternships();
+        });
+    </script>
+</body>
+</html> 
