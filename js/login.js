@@ -142,52 +142,24 @@ const errorMessage = document.getElementById('errorMessage');
 loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    // Get form values
-    const email = document.getElementById('email').value.trim();
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const remember = document.getElementById('remember').checked;
-
-    try {
-        // Authenticate user
-        const user = USER_DATA.validateUser(email, password);
+    const rememberMe = document.getElementById('remember').checked;
+    
+    // Validate credentials
+    const user = USER_DATA.validateUser(email, password);
+    
+    if (user) {
+        // Update last login time
+        USER_DATA.updateLastLogin(email);
         
-        if (user) {
-            // Successful login
-            USER_DATA.updateLastLogin(email);
-            
-            // Store user data
-            const userData = {
-                name: user.name,
-                email: user.email,
-                role: user.role,
-                isLoggedIn: true,
-                loginTime: new Date().toISOString()
-            };
-
-            // Save to storage based on remember me option
-            if (remember) {
-                localStorage.setItem('userSession', JSON.stringify(userData));
-            } else {
-                sessionStorage.setItem('userSession', JSON.stringify(userData));
-            }
-
-            // Redirect to main page
-            window.location.href = 'index.html';
-        } else {
-            // Show error message
-            errorMessage.textContent = 'Invalid email or password';
-            errorMessage.style.display = 'block';
-            
-            // Hide error message after 3 seconds
-            setTimeout(() => {
-                errorMessage.style.display = 'none';
-            }, 3000);
-        }
-
-    } catch (error) {
-        console.error('Login error:', error);
-        errorMessage.textContent = error.message;
-        errorMessage.style.display = 'block';
+        // Create user session
+        SessionManager.createSession(user, rememberMe);
+        
+        // Redirect to home page
+        window.location.href = 'index.html';
+    } else {
+        showError('Invalid email or password');
     }
 });
 
@@ -326,4 +298,23 @@ document.getElementById('signupLink').addEventListener('click', function(e) {
     e.preventDefault();
     // Redirect to signup page or show signup form
     alert('Signup functionality coming soon!');
-}); 
+});
+
+function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+    setTimeout(() => {
+        errorMessage.style.display = 'none';
+    }, 3000);
+}
+
+function simulateLogin(email, password) {
+    return new Promise((resolve, reject) => {
+        const user = USER_DATA.validateUser(email, password);
+        if (user) {
+            resolve(user);
+        } else {
+            reject(new Error('Invalid email or password'));
+        }
+    });
+} 
